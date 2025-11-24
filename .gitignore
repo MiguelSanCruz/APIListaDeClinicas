@@ -1,0 +1,40 @@
+# Arquivos do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pytest_cache/
+
+# Ambientes virtuais
+.env
+.venv
+venv/
+ENV/
+env/
+
+# Configurações do VSCode
+.vscode/
+
+# Arquivos de sistema (Windows / Mac / Linux)
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Cache
+.cache/
+dist/
+build/
+
+# Arquivos sensíveis
+*.env
+.env.*
+*.sqlite3
+
+# Pasta do Uvicorn
+*.pid
+
+# IDEs
+.idea/
+*.iml

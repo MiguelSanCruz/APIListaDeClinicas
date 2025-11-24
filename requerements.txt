@@ -1,0 +1,8 @@
+| Pacote              | Para que serve                                             |
+| ------------------- | ---------------------------------------------------------- |
+| **fastapi**         | Framework da API                                           |
+| **uvicorn**         | Servidor ASGI para rodar a API                             |
+| **sqlalchemy**      | ORM para conectar ao PostgreSQL                            |
+| **psycopg2-binary** | Driver PostgreSQL (obrigatório para Supabase)              |
+| **pydantic**        | Modelos e validação (v2 já instalada por padrão)           |
+| **python-dotenv**   | Se quiser carregar variáveis do `.env` (opcional mas útil) |
