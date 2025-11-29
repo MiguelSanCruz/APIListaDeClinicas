@@ -47,14 +47,19 @@ cd api-de-clinicas
 ```
 ### 2. Ambiente Virtual
 Criação e Ativação (Linux/macOS):
+```
 python -m venv venv
+```
 source venv/bin/activate
+
 
 Ativação (Windows):
 .\venv\Scripts\activate
 
 ###  3. Instalar as Dependências
+```
 pip install -r requirements.txt
+```
 
 ### 4.Configuração do Ambiente (.env)
 Crie um arquivo chamado .env na raiz do projeto. O projeto suporta dois modos de operação via variável API_MODE: db (Supabase/PostgreSQL) ou internal (dicionário em memória).
