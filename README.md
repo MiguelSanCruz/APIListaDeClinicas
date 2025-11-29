@@ -1,96 +1,71 @@
-API de Clínicas - Meu Projeto de Estudo com FastAPI + SQLAlchemy + Supabase
+# 🏥 API de Clínicas - Meu Projeto de Estudo com FastAPI + SQLAlchemy
 
-Este é um projeto de estudo pessoal focado em construir uma API RESTful completa para gerenciar o cadastro de clínicas. É mais um passo na minha jornada de aprendizado, e estou muito animado(a) com a combinação dessas tecnologias!
+> Este é um projeto de estudo pessoal focado em construir uma API RESTful completa para gerenciar o cadastro de clínicas. Uma ótima oportunidade para consolidar o conhecimento com a poderosa combinação de **FastAPI**, **SQLAlchemy (Async)** e **Supabase (PostgreSQL)**.
 
-A ideia aqui é simular um CRUD (Criar, Ler, Atualizar, Deletar) robusto.
+---
 
-Um detalhe legal: A API tem dois modos de operação que eu criei para facilitar os testes:
+## 🎯 Motivação (Foco no Aprendizado)
 
-Modo DB (oficial): Conecta ao PostgreSQL do Supabase para ter dados reais e persistentes.
+O principal objetivo deste projeto é simular um **CRUD (Criar, Ler, Atualizar, Deletar)** robusto em uma arquitetura de camadas. Este projeto está sendo usado como peça central do meu portfólio para aprofundar em:
 
-Modo Interno (para testes): Usa um dicionário Python em memória. Perfeito para testar rápido sem me preocupar com o banco!
+* **Desenvolvimento Assíncrono:** Uso do **AsyncIO** no Python e no SQLAlchemy.
+* **Arquitetura de Camadas:** Separação clara entre Rotas, Lógica de Negócio (Controllers) e Acesso a Dados (Services).
+* **Contêineres de DB:** Conexão e persistência de dados utilizando o **PostgreSQL** hospedado no Supabase.
 
-O que eu estou usando (Tech Stack)
+---
 
-Estou treinando bastante com essa stack:
+## ✨ Tecnologias Utilizadas (Tech Stack)
 
-Linguagem: Python 3.10+ (Amo Python!)
+| Categoria | Tecnologia | Uso |
+| :--- | :--- | :--- |
+| **Linguagem** | Python | Versão 3.10+ |
+| **Framework** | **FastAPI** | Alto desempenho e documentação automática. |
+| **Servidor** | Uvicorn | Servidor ASGI para rodar o FastAPI. |
+| **ORM** | **SQLAlchemy** | Mapeamento Objeto-Relacional (AsyncIO). |
+| **Validação** | **Pydantic v2** | Definição e validação robusta dos modelos de dados. |
+| **Banco de Dados** | PostgreSQL | Hospedado no **Supabase** (serviço BaaS). |
+| **Migrações** | Alembic | Gerenciamento do esquema do banco de dados (Opcional por enquanto). |
 
-Framework: FastAPI (Muita velocidade!)
+---
 
-Servidor ASGI: Uvicorn
+## ⚙️ Estrutura do Projeto
+. ├── app/ │ ├── api/ │ │ ├── controllers/ # 🧠 Lógica de negócio da API. │ │ ├── routes/ # 🛣 Definição dos endpoints (caminhos da API). │ │ └── schemas/ # 📋 Modelos de dados (Pydantic para requisições/respostas e SQLAlchemy para o DB). │ ├── services/ # 💾 Camada que interage com o banco de dados (ou dicionário interno). │ └── config.py # ⚙️ Arquivo de configurações e variáveis de ambiente. ├── main.py # Ponto de entrada da aplicação FastAPI. ├── requirements.txt # Lista de dependências. └── .env.example # Exemplo das variáveis de ambiente necessárias.
 
-ORM: SQLAlchemy (Com suporte a AsyncIO, o que me deu um bom trabalho para aprender, mas valeu a pena!)
+---
 
-Validação de Dados: Pydantic v2
+## 🚀 Como Rodar o Projeto (Instalação e Setup)
 
-Banco de Dados: PostgreSQL (Hospedado no Supabase - que é um serviço incrível)
+### Pré-requisitos
+* **Python 3.10+** instalado.
+* **Git** instalado.
 
-Migrações: Alembic (Ainda estou pegando o jeito, mas é opcional por enquanto)
+### 1. Baixar o Código
 
-Estrutura das Pastas
-
-Tentei organizar o código seguindo as boas práticas que estou aprendendo, separando a lógica de negócio, rotas e modelos:
-
-app/
-├── api/
-│   ├── controllers/  → A lógica de negócio (o "cérebro" da minha API).
-│   ├── routes/       → Onde defino os caminhos (endpoints).
-│   └── schemas/      → Modelos de dados (SQLAlchemy e Pydantic).
-├── services/         → A parte que conversa com o banco de dados (ou com o dicionário interno).
-├── config.py         → Arquivo de configurações (para mudar do modo DB para o Interno).
-main.py               → Onde a aplicação FastAPI inicia.
-requirements.txt      → Lista de pacotes necessários.
-.env.example          → Para mostrar as variáveis de ambiente necessárias.
-
-
-Como Rodar Aqui (Instalação e Setup)
-
-Se quiser testar ou dar uma olhada, é bem simples!
-
-1. Requisitos
-
-Python 3.10+ instalado.
-
-2. Baixar o Código
-
-git clone <URL_DO_SEU_REPOSITORIO>
+```bash
+git clone [URL_DO_SEU_REPOSITORIO] 
 cd api-de-clinicas
-
-
-3. Ambiente Virtual (Recomendado)
-
-Sempre bom isolar as dependências!
-
-# Cria e ativa (Linux/macOS)
+```
+### 2. Ambiente Virtual
+Criação e Ativação (Linux/macOS):
 python -m venv venv
 source venv/bin/activate
 
-# Ativa no Windows
+Ativação (Windows):
 .\venv\Scripts\activate
 
-
-4. Instalar as Dependências
-
+###  3. Instalar as Dependências
 pip install -r requirements.txt
 
+### 4.Configuração do Ambiente (.env)
+Crie um arquivo chamado .env na raiz do projeto. O projeto suporta dois modos de operação via variável API_MODE: db (Supabase/PostgreSQL) ou internal (dicionário em memória).
+# Use sua URL de conexão REAL aqui para o modo 'db':
+DATABASE_URL="postgresql+asyncpg://<USER>:<PASSWORD>@<HOST>:<PORT>/<DB_NAME>"
 
-5. Configuração do Banco de Dados (Se quiser usar o modo DB)
+# Escolha o modo de operação:
+API_MODE="db"
 
-Crie um arquivo chamado .env e coloque a URL do seu PostgreSQL/Supabase.
-
-Use a variável API_MODE para escolher entre 'db' ou 'internal':
-
-# Conteúdo do arquivo .env
-# Use sua URL de conexão REAL aqui:
-DATABASE_URL="postgresql+asyncpg://<USER>:<PASSWORD>@<HOST>:<PORT>/<DATABASE>"
-
-# API_MODE="db" para rodar com o banco | API_MODE="internal" para rodar com o dicionário
-API_MODE="db" 
-
-
-Tabela no Supabase: Se for usar o DB, o Supabase precisa dessa tabela:
-
+### 5. Configuração da Tabela (Modo db)
+Se for rodar no modo db, o PostgreSQL precisa da seguinte tabela:
 CREATE TABLE IF NOT EXISTS clinicas (
     id SERIAL PRIMARY KEY,
     clinica TEXT NOT NULL,
@@ -98,49 +73,33 @@ CREATE TABLE IF NOT EXISTS clinicas (
     endereco TEXT NOT NULL
 );
 
-
-Como rodar
-
-É só usar o Uvicorn para iniciar o servidor. O --reload é mágico para o desenvolvimento, pois salva e já recarrega na hora!
-
+### 6. Executar a Aplicação
 uvicorn main:app --reload
+O servidor estará rodando em: http://localhost:8000
 
+###Endpoints Disponíveis
+Com o servidor rodando, você pode usar a documentação interativa:
 
-Testando os Endpoints
-
-Com o servidor rodando em http://localhost:8000, você pode usar a documentação interativa:
-
-Swagger UI: http://localhost:8000/docs (Eu uso muito essa!)
+Swagger UI: http://localhost:8000/docs (Recomendado)
 
 ReDoc: http://localhost:8000/redoc
 
-Os endpoints disponíveis são:
+|Método|Rota|Descrição (CRUD)|
+| :--- | :--- | :--- |
+|GET|/clinicas/|Read: Lista todas as clínicas.|
+|GET|/clinicas/{id}|Read: Detalha uma clínica específica pelo ID.|
+|POST|/clinicas/|Create: Adiciona uma clínica nova.|
+|PUT|/clinicas/{id}|Update: Edita os dados de uma clínica existente.|
+|DELETE|/clinicas/{id}|Delete: Remove uma clínica do sistema.|
 
-GET /clinicas/    - Me mostra todas as clínicas.
-
-GET /clinicas/{id}    - Me mostra uma clínica específica.
-
-POST /clinicas/    - Adiciona uma clínica nova.
-
-PUT /clinicas/{id}    - Edita uma clínica.
-
-DELETE /clinicas/{id}    -Remove uma clínica.
-
-
-Como estou aprendendo, todo feedback é super bem-vindo!
-
-Se você viu algo que eu poderia fazer melhor ou quiser sugerir uma feature, sinta-se à vontade para:
+Contribuição e Feedback
+Como este é um projeto de aprendizado, todo feedback é super bem-vindo!
 
 Abrir uma Issue (para bugs ou sugestões).
 
-Criar um Pull Request (para mandar código corrigido/melhorado).
+Criar um Pull Request (para enviar código corrigido/melhorado).
 
-Obrigado por conferir meu projeto! 
+Obrigado por conferir meu projeto!
 
-Licença
-
-Este projeto está sob a licença 
-
-$$Escolha uma licença, ex: MIT$$
-
-
+**Autor:**
+*Miguel S Cruz*
